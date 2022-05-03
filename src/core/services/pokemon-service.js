@@ -6,6 +6,6 @@ export async function getAllPokemons() {
 }
 
 export async function getPokemonDetail(pokemonId) {
-  const response = await fetch(`${baseUrl}/pokemon/${pokemonId}`);
+  const response = await fetch(`${baseUrl}/pokemon?pokemonId=${pokemonId}`);
   return await response.json();
 }
