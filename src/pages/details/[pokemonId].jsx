@@ -2,15 +2,26 @@ import { useRouter } from "next/router";
 import React from "react";
 import Header from "../../components/Header";
 import Layout from "../../components/template/Layout";
+import { getPokemonDetail } from "../../core/services/pokemon-service";
 
-const DetailsPage = () => {
-  const router = useRouter();
+export async function getServerSideProps(context) {
+  const { pokemonId } = context.params;
 
-  const { pokemonId } = router.query;
+  const pokemon = await getPokemonDetail(pokemonId);
 
+  return {
+    props: {
+      pokemon: {
+        id: pokemonId,
+      },
+    },
+  };
+}
+
+const DetailsPage = ({ pokemon }) => {
   return (
     <Layout>
-      <Header>Detalhes do pokemon {pokemonId}</Header>
+      <Header>Detalhes do pokemon {pokemon?.id}</Header>
     </Layout>
   );
 };
