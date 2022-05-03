@@ -10816,5 +10816,5 @@ const pokemonData = [
 ];
 
 export default function handler(res, req) {
-  req.status(200).json(pokemonData);
+  req.status(200).json(pokemonData.slice(0, 20));
 }

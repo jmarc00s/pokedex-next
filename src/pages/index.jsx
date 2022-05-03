@@ -17,6 +17,9 @@ export default function Home({ pokemons }) {
   return (
     <Layout>
       <Header>Pokedex Nextjs App</Header>
+      <h2 className="text-center text-gray-500 font-semibold py-2">
+        (Clique em um pokemón para ver os detalhes)
+      </h2>
       <PokemonGrid pokemons={pokemons} />
     </Layout>
   );
