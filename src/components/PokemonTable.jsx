@@ -31,7 +31,7 @@ const PokemonTable = ({ pokemon }) => {
       <table className="w-full">
         <thead className="bg-gray-200">
           <tr>
-            <th className="p-2 text-left">Atributo</th>
+            <th className="px-4 py-3 text-left">Atributo</th>
             <th>Valor</th>
           </tr>
         </thead>

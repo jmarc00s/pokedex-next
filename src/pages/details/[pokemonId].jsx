@@ -22,7 +22,7 @@ const DetailsPage = ({ pokemon }) => {
   return (
     <Layout>
       <div>
-        <Header>Detalhes do pokemon {pokemon?.name}</Header>
+        <Header>Detalhes do pokemón {pokemon?.name}</Header>
       </div>
 
       <section className="h-screen">
