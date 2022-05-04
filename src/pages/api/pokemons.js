@@ -1,5 +1,9 @@
 import pokemonData from "./data";
 
-export default function handler(res, req) {
-  req.status(200).json(pokemonData.slice(0, 20));
+export default function handler(req, res) {
+  const { pageIndex } = req.query;
+  const start = +pageIndex * 16;
+  const end = (+pageIndex + 1) * 16;
+  const pokemons = pokemonData.slice(start, end);
+  res.status(200).json(pokemons);
 }

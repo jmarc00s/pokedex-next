@@ -1,11 +1,11 @@
 const baseUrl = "http://localhost:3000/api";
 
-export async function getAllPokemons() {
-  const response = await fetch(`${baseUrl}/pokemons`);
+export async function getPokemonDetail(pokemonId) {
+  const response = await fetch(`${baseUrl}/pokemon?pokemonId=${pokemonId}`);
   return await response.json();
 }
 
-export async function getPokemonDetail(pokemonId) {
-  const response = await fetch(`${baseUrl}/pokemon?pokemonId=${pokemonId}`);
+export async function getPokemonPaginated(pageIndex = 0) {
+  const response = await fetch(`${baseUrl}/pokemons?pageIndex=${pageIndex}`);
   return await response.json();
 }
