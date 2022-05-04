@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import Layout from "../../components/template/Layout";
 import PokemonCard from "../../components/PokemonCard";
 import { getPokemonDetail } from "../../core/services/pokemon-service";
+import PokemonTable from "../../components/PokemonTable";
 
 export async function getServerSideProps(context) {
   const { pokemonId } = context.params;
@@ -25,8 +26,16 @@ const DetailsPage = ({ pokemon }) => {
       </div>
 
       <section className="h-screen">
-        <div className="grid md:grid-cols-2 grid-cols-1 justify-between gap-8">
+        <div className="flex justify-center">
+          <Link href="/">
+            <span className="text-xl cursor-pointer hover:underline">
+              Voltar
+            </span>
+          </Link>
+        </div>
+        <div className="grid justify-between grid-cols-1 gap-8 pt-3 md:grid-cols-2">
           <PokemonCard pokemon={pokemon} />
+          <PokemonTable pokemon={pokemon} />
         </div>
       </section>
     </Layout>
