@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import { getPokemonPaginated } from "../core/services/pokemon-service";
 import PokemonGrid from "../components/PokemonGrid";
 import Button from "../components/ui/Button";
+import FabButton from "../components/ui/FabButton";
+import { ChevronDoubleUpIcon } from "@heroicons/react/solid";
 
 export async function getServerSideProps() {
   const pokemons = await getPokemonPaginated();
@@ -25,6 +27,10 @@ export default function Home({ pokemons }) {
     setPokemonData([...pokemonData, ...response]);
   };
 
+  const handleGotoTopClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Layout>
       <Header>Pokedex Nextjs App</Header>
@@ -35,6 +41,11 @@ export default function Home({ pokemons }) {
       <div className="flex justify-end my-4">
         <Button onClick={handleLoadMoreClick}>Carregar mais...</Button>
       </div>
+      <FabButton
+        icon={<ChevronDoubleUpIcon />}
+        onClick={handleGotoTopClick}
+        title="Voltar ao topo"
+      />
     </Layout>
   );
 }
