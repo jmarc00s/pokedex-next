@@ -1,10 +1,13 @@
 import React from "react";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import { getPokemonDetail } from "../../core/services/pokemon-service";
+
 import Header from "../../components/Header";
 import Layout from "../../components/template/Layout";
 import PokemonCard from "../../components/PokemonCard";
-import { getPokemonDetail } from "../../core/services/pokemon-service";
 import PokemonTable from "../../components/PokemonTable";
+import FabButton from "../../components/ui/FabButton";
+import { ArrowLeftIcon } from "@heroicons/react/outline";
 
 export async function getServerSideProps(context) {
   const { pokemonId } = context.params;
@@ -19,6 +22,12 @@ export async function getServerSideProps(context) {
 }
 
 const DetailsPage = ({ pokemon }) => {
+  const router = useRouter();
+
+  const handleBackClick = () => {
+    router.push("/");
+  };
+
   return (
     <Layout>
       <div>
@@ -26,18 +35,18 @@ const DetailsPage = ({ pokemon }) => {
       </div>
 
       <section className="h-screen">
-        <div className="flex justify-center">
-          <Link href="/">
-            <span className="text-xl cursor-pointer hover:underline">
-              Voltar
-            </span>
-          </Link>
-        </div>
+        <div className="flex justify-center"></div>
         <div className="grid justify-between grid-cols-1 gap-8 pt-3 md:grid-cols-2">
           <PokemonCard pokemon={pokemon} />
           <PokemonTable pokemon={pokemon} />
         </div>
       </section>
+
+      <FabButton
+        icon={<ArrowLeftIcon />}
+        title="Voltar"
+        onClick={handleBackClick}
+      />
     </Layout>
   );
 };
