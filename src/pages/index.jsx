@@ -37,15 +37,17 @@ export default function Home({ pokemons }) {
       <h2 className="py-2 font-semibold text-center text-gray-500">
         (Clique em um pokemón para ver os detalhes)
       </h2>
-      <PokemonGrid pokemons={pokemonData} />
-      <div className="flex justify-end my-4">
-        <Button onClick={handleLoadMoreClick}>Carregar mais...</Button>
-      </div>
-      <FabButton
-        icon={<ChevronDoubleUpIcon />}
-        onClick={handleGotoTopClick}
-        title="Voltar ao topo"
-      />
+      <section className="px-8">
+        <PokemonGrid pokemons={pokemonData} />
+        <div className="flex my-4">
+          <Button onClick={handleLoadMoreClick}>Carregar mais...</Button>
+        </div>
+        <FabButton
+          icon={<ChevronDoubleUpIcon />}
+          onClick={handleGotoTopClick}
+          title="Voltar ao topo"
+        />
+      </section>
     </Layout>
   );
 }
