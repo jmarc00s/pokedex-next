@@ -1,4 +1,4 @@
-import pokemonData from "../dataa";
+import pokemonData from "../data";
 
 export default function handler(req, res) {
   const { pageIndex } = req.query;

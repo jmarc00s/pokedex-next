@@ -10,7 +10,9 @@ export default function handler(req, res) {
   console.log(filter);
 
   const data = pokemonData
-    .filter((pokemon) => pokemon.name.toLowerCase().includes(filter))
+    .filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(filter.toLowerCase().trim())
+    )
     .slice(start, end);
 
   return res.status(200).json(data);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/template/Layout";
 import Header from "../components/Header";
-import { getPokemonPaginated } from "../core/services/pokemon-service";
+import * as PokemonService from "../core/services/pokemon-service";
 import PokemonGrid from "../components/PokemonGrid";
 import Button from "../components/ui/Button";
 import FabButton from "../components/ui/FabButton";
@@ -9,7 +9,7 @@ import { ChevronDoubleUpIcon } from "@heroicons/react/solid";
 import Input from "../components/ui/Input";
 
 export async function getServerSideProps() {
-  const pokemons = await getPokemonPaginated();
+  const pokemons = await PokemonService.getPokemonPaginated();
 
   return {
     props: {
@@ -21,19 +21,35 @@ export async function getServerSideProps() {
 export default function Home({ pokemons }) {
   const [page, setPage] = useState(0);
   const [pokemonData, setPokemonData] = useState(pokemons);
+  const [filter, setFilter] = useState("");
+
+  const loadMorePokemonsWithFilter = async () => {
+    const response = await PokemonService.filterPokemon(filter, page + 1);
+    setPokemonData((prevState) => [...prevState, ...response]);
+  };
 
   const handleLoadMoreClick = async () => {
     setPage(page + 1);
-    const response = await getPokemonPaginated(page + 1);
-    setPokemonData([...pokemonData, ...response]);
+
+    if (filter.length) {
+      loadMorePokemonsWithFilter();
+      return;
+    }
+
+    const response = await PokemonService.getPokemonPaginated(page + 1);
+    setPokemonData((prevState) => [...prevState, ...response]);
+    return;
   };
 
   const handleGotoTopClick = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handlePokemonFilter = (filter) => {
-    console.log(filter);
+  const handlePokemonFilter = async (filter) => {
+    setPage(0);
+    setFilter(filter);
+    const response = await PokemonService.filterPokemon(filter);
+    setPokemonData(response);
   };
 
   return (
