@@ -29,10 +29,10 @@ const PokemonTable = ({ pokemon }) => {
   return (
     <div className="border rounded-lg shadow-md">
       <table className="w-full">
-        <thead className="bg-gray-200">
+        <thead className="bg-gray-700 text-gray-50">
           <tr>
             <th className="px-4 py-3 text-left">Atributo</th>
-            <th>Valor</th>
+            <th className="px-4 py-3">Valor</th>
           </tr>
         </thead>
         <tbody>
