@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDebounce } from "../../core/hooks/useDebounce";
 
-const Input = ({ onChange, value, debounceTime = 500, ...rest }) => {
+const Input = ({ onChange, ...rest }) => {
+  const sendDebouncedValue = useDebounce(onChange);
+  const [displayedValue, setDisplayedValue] = useState("");
+
   const handleChange = (value) => {
-    onChange(value);
+    setDisplayedValue(value);
+    sendDebouncedValue(value);
   };
 
   return (
     <input
-      value={value}
+      value={displayedValue}
       className={`
         px-2 py-1 text-xl rounded-md 
-        outline-none focus:ring-2 focus:ring-blue-400
+        outline-none focus:ring-2 focus:ring-blue-200
         shadow-md
       `}
       onChange={({ target }) => handleChange(target.value)}

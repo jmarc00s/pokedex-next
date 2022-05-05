@@ -21,7 +21,6 @@ export async function getServerSideProps() {
 export default function Home({ pokemons }) {
   const [page, setPage] = useState(0);
   const [pokemonData, setPokemonData] = useState(pokemons);
-  const [filter, setFilter] = useState("");
 
   const handleLoadMoreClick = async () => {
     setPage(page + 1);
@@ -33,6 +32,10 @@ export default function Home({ pokemons }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handlePokemonFilter = (filter) => {
+    console.log(filter);
+  };
+
   return (
     <Layout>
       <Header>Pokedex Nextjs App</Header>
@@ -41,11 +44,9 @@ export default function Home({ pokemons }) {
       </h2>
       <section className="flex flex-col gap-4 px-8">
         <Input
-          value={filter}
-          onChange={setFilter}
+          onChange={handlePokemonFilter}
           placeholder="Filtre um pókemon..."
         />
-        {JSON.stringify(filter)}
         <PokemonGrid pokemons={pokemonData} />
         <div className="flex my-4">
           <Button onClick={handleLoadMoreClick}>Carregar mais...</Button>
