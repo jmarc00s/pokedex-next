@@ -6,6 +6,7 @@ import PokemonGrid from "../components/PokemonGrid";
 import Button from "../components/ui/Button";
 import FabButton from "../components/ui/FabButton";
 import { ChevronDoubleUpIcon } from "@heroicons/react/solid";
+import Input from "../components/ui/Input";
 
 export async function getServerSideProps() {
   const pokemons = await getPokemonPaginated();
@@ -20,6 +21,7 @@ export async function getServerSideProps() {
 export default function Home({ pokemons }) {
   const [page, setPage] = useState(0);
   const [pokemonData, setPokemonData] = useState(pokemons);
+  const [filter, setFilter] = useState("");
 
   const handleLoadMoreClick = async () => {
     setPage(page + 1);
@@ -37,7 +39,13 @@ export default function Home({ pokemons }) {
       <h2 className="py-2 font-semibold text-center text-gray-500">
         (Clique em um pokemón para ver os detalhes)
       </h2>
-      <section className="px-8">
+      <section className="flex flex-col gap-4 px-8">
+        <Input
+          value={filter}
+          onChange={setFilter}
+          placeholder="Filtre um pókemon..."
+        />
+        {JSON.stringify(filter)}
         <PokemonGrid pokemons={pokemonData} />
         <div className="flex my-4">
           <Button onClick={handleLoadMoreClick}>Carregar mais...</Button>
