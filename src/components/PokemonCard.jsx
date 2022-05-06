@@ -8,7 +8,7 @@ const PokemonCard = ({ pokemon }) => {
       <div
         className={`px-4 py-8 rounded-md shadow-lg cursor-pointer 
                   bg-gray-50 flex flex-col items-center justify-center
-                  hover:scale-105 transition-all`}
+                  hover:scale-105 active:scale-95 transition-all`}
       >
         <Image
           height={120}
