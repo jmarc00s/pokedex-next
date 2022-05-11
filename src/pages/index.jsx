@@ -7,7 +7,6 @@ import Button from "../components/ui/Button";
 import FabButton from "../components/ui/FabButton";
 import { ChevronDoubleUpIcon } from "@heroicons/react/solid";
 import Input from "../components/ui/Input";
-import Loading from "../components/loading";
 
 export async function getServerSideProps() {
   const pokemons = await PokemonService.getPokemonPaginated();

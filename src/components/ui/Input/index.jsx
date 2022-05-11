@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDebounce } from "../../core/hooks/useDebounce";
-import Loading from "../loading";
+import Loading from "../../loading";
+import { useDebounce } from "../../../core/hooks/useDebounce";
 
 const Input = ({ onChange, loading, ...rest }) => {
   const sendDebouncedValue = useDebounce(onChange);
