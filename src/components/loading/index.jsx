@@ -3,7 +3,7 @@ import styles from "./loading.module.css";
 
 const Loading = () => {
   return (
-    <div className={styles.spinner}>
+    <div data-testid="loading-component" className={styles.spinner}>
       <div></div>
       <div></div>
       <div></div>
