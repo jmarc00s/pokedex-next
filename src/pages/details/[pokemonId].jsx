@@ -1,13 +1,13 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { getPokemonDetail } from "../../core/services/pokemon-service";
+import React from 'react';
+import { useRouter } from 'next/router';
+import { getPokemonDetail } from '../../core/services/pokemon-service';
 
-import Header from "../../components/Header";
-import Layout from "../../components/template/Layout";
-import PokemonCard from "../../components/PokemonCard";
-import PokemonTable from "../../components/PokemonTable";
-import FabButton from "../../components/ui/FabButton";
-import { ArrowLeftIcon } from "@heroicons/react/outline";
+import Header from '../../components/template/Header';
+import Layout from '../../components/template/Layout';
+import PokemonCard from '../../components/PokemonCard';
+import PokemonTable from '../../components/PokemonTable';
+import FabButton from '../../components/ui/FabButton';
+import { ArrowLeftIcon } from '@heroicons/react/outline';
 
 export async function getServerSideProps(context) {
   const { pokemonId } = context.params;
@@ -25,7 +25,7 @@ const DetailsPage = ({ pokemon }) => {
   const router = useRouter();
 
   const handleBackClick = () => {
-    router.push("/");
+    router.push('/');
   };
 
   return (

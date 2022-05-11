@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Layout from "../components/template/Layout";
-import Header from "../components/Header";
-import * as PokemonService from "../core/services/pokemon-service";
-import PokemonGrid from "../components/PokemonGrid";
-import Button from "../components/ui/Button";
-import FabButton from "../components/ui/FabButton";
-import { ChevronDoubleUpIcon } from "@heroicons/react/solid";
-import Input from "../components/ui/Input";
+import React, { useState } from 'react';
+import Layout from '../components/template/Layout';
+import Header from '../components/template/Header';
+import * as PokemonService from '../core/services/pokemon-service';
+import PokemonGrid from '../components/PokemonGrid';
+import Button from '../components/ui/Button';
+import FabButton from '../components/ui/FabButton';
+import { ChevronDoubleUpIcon } from '@heroicons/react/solid';
+import Input from '../components/ui/Input';
 
 export async function getServerSideProps() {
   const pokemons = await PokemonService.getPokemonPaginated();
@@ -21,7 +21,7 @@ export async function getServerSideProps() {
 export default function Home({ pokemons }) {
   const [page, setPage] = useState(0);
   const [pokemonData, setPokemonData] = useState(pokemons);
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState(false);
 
   const loadMorePokemonsWithFilter = async () => {
@@ -46,7 +46,7 @@ export default function Home({ pokemons }) {
   };
 
   const handleGotoTopClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePokemonFilter = async (filter) => {
